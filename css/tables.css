@@ -1,0 +1,26 @@
+table,
+td,
+th {
+    border: 1px solid #ddd;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 15px;
+}
+
+/* 表头 */
+th {
+    background-color: #4caf50;
+    color: rgb(255, 0, 0);
+}
+
+/* 鼠标悬停效果 */
+td:hover {
+    background-color: #000000;
+}
