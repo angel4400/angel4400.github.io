@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>首页</title>
+  </head>
+  <body>
+    // 1.1通过键盘输入某年某月某日，计算并输出这一天是这一年的第几天。例如，2001年 3 月 5 日是这一年的第 64 天。
+    <!-- <input type="text" id="year" />年
+<input type="text" id="month" />月
+<input type="text" id="day" />日
+<input type="button" value="提交" onclick="mo()">
+<script>
+        function mo() {
+        let year = parseInt(document.getElementById("year").value);
+        let month = parseInt(document.getElementById("month").value);
+        let day = parseInt(document.getElementById("day").value);
+        let e = 0;
+        let arr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        for (let i = 0; i < (month - 1); i++) {
+            e += arr[i];
+        }
+        if (year % 400 == 0 || year % 4 == 0 && year % 10 != 0) {
+            if (month > 2) {
+                e++;
+            }
+        }
+        alert(`这一天是这一年的第${e + day}天`);
+    }
+</script> -->
+    <!-- 1.2 41页 -->
+    1.3判断一个整数是否为‚水仙花数‛。所谓‚水仙花数‛是指一个三位的整数，其各位数字立方和等于该数本身。例如：153是一个‚水仙花数‛， 因为 153=13＋53＋33。
+    <!-- <script>
+            let num = parseInt(prompt('请输入一个数：'));
+            alert(daffodil(num));
+
+            function daffodil(num) {
+                    // 判断他是不是一个三位数以上的数以及整数
+                    if (num < 100 && num % 1 != 0) {
+                        return "水仙花数是一个三位数以上的整数，你输入的数不是一个水仙花数"
+                    } else {
+                        // 截取数字的每一位
+                        // 把他转换成字符串
+                        var str = String(num)
+                        //定义一个变量算和
+                        count = 0;
+                        // 每个位上的数字的 3 次幂之和等于它本身
+                        for (var i = 0; i < str.length; i++) {
+                            count += str.substr(i, 1) ** 3
+                        }
+                        // 检测输出的结果是否准确
+                        // console.log(count)
+                        // 判断原来的数是否等于他的每个位置上的三次幂的和
+                        if (count == num) {
+                            return ('这是一个水仙花数')
+                        } else {
+                            return ('这不是一个水仙花数')
+                        }
+                    }
+                }
+    </script> -->
+    2.1定义一个二维数组 A，用于存放 30 个学生的 5 门成绩。定义一个一维数组 B，用于存放每个学生的 5 门课程的平均成绩。
+    ①使用二重循环，将每个学生的成绩输入到二维数组 A 中。
+    ②使用二重循环，对已经存在于二维数组 A 中的值进行平均分计算，将结果保存到一维数组 B 中。
+    ③使用循环输出一维数组 B（即平均分）的值。
+    <!-- <script>
+            let A = [];
+            let B = [];
+            for (let i = 0; i < 30; i++) {
+                A[i] = [];
+                for (let j = 0; j < 5; j++) {
+                    A[i][j] = parseInt(prompt(`请输入第${i + 1}个学生的第${j + 1}门课程的成绩：`));
+                }
+            }
+            for (let i = 0; i < 30; i++) {
+                let count = 0;
+                for (let j = 0; j < 5; j++) {
+                    count += A[i][j];
+                }
+                B[i] = count / 5;
+            }
+            for (let i = 0; i < 30; i++) {
+                console.log(`第${i + 1}个学生的平均成绩是：${B[i]}`);
+            }
+    </script> -->
+    2.2输入一个整数 n，计算并输出他的阶乘。注意：定义一个函数(或方法)，用于求阶乘的值。
+  <!-- <script>
+    function factorial(n) {
+        if (n == 1) {
+            return 1;
+        } else {
+            return n * factorial(n - 1);
+        }
+    }
+    console.log(factorial(5));
+  </script> -->
+
+     2.3有一分数序列：2/1，3/2，5/3，8/5，13/8，21/13 … 求出这个数列的前 20 项之和。
+    <!-- <script>
+     var i = 1, a = 2, b = 1, c, s = 0;
+        while (i <= 20) {
+            s += a / b;
+            document.write('+' + a + '/' + b);
+            c = a + b;
+            b = a;
+            a = c;
+            i++;
+        }
+        alert('=' + s);
+    </script> -->
+
+    3.1// 输入一个字符串统计每个元音字母（aeiou）在字符串中出现的次数。对于结果输出 5 行，格式如下：
+    // a: num1（a 的个数）
+    // e: num2（b 的个数）
+    // i: num3（i 的个数）
+    // o: num4（o 的个数）
+    // u: num5（u 的个数）
+    // 例如输入 aeioubbbccc，输出：
+    // a: 1
+    // e: 1
+    // i: 1
+    // o: 1
+    // u: 1
+  <script>
+            // const vowels = ["a", "e", "i", "o", "u"]
+            // function countVowel(str) {
+            //     let count = 0;
+            //     for (let letter of str.toLowerCase()) {
+            //         if (vowels.includes(letter)) {
+            //             count++;
+            //         }
+            //     }
+            //     return count
+            // }
+            // let string = prompt('Enter a string: ');
+            // let result = countVowel(string);
+            // console.log(result);
+  </script>
+
+    3.2
+    <script>
+            // 有 n 盏灯，编号 1～n（0 < n < 100）。第 1 个人把所有灯打开，第 2 个人按下所有编号为
+            //     2 的倍数的开关（这些灯将被关掉），第 3 个人按下所有编号为 3 的倍数的开关（其中关掉
+            //     的灯将被打开，开着的灯将被关闭），依次类推。输入灯数和人数，输出开着的灯的编号。
+            //     比如输入：10 2 输出最后亮灯的编号：1, 3, 5, 7, 9
+
+
+
+    </script>
+    4.1表示球的半径。输出对应球的体积，对于每组输入数据，输出一行，计算结果保留三位小数。
+    <!-- <script>
+        var r = parseFloat(prompt('请输入球的半径: '));
+        var v = 4 / 3 * Math.PI * Math.pow(r, 3);
+        console.log(v.toFixed(3));
+    </script> -->
+    4.2// 输入两点坐标（X1, Y1）,（X2, Y2）, 计算并输出两点间的距离。输入数据有多组，每组占一行，由 4 个实数组成，分别表示 x1, y1, x2, y2, 数据之间用空格隔开。 例如输入： 1 3 4 6 则输出：4.24
+    <!-- <script>
+        var x1 = parseFloat(prompt('Enter the x1: '));
+        var y1 = parseFloat(prompt('Enter the y1: '));
+        var x2 = parseFloat(prompt('Enter the x2: '));
+        var y2 = parseFloat(prompt('Enter the y2: '));
+        var distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        console.log(distance.toFixed(2));
+    </script> -->
+
+    4.3
+    <script>
+        // 按顺序输入正方形的边长（a），长方形的长（l）和宽（d），以及圆的半径（r），计算并比较它们哪个图形面积更大，输出面积最大的图形。
+        var a = parseFloat(prompt('Enter the a: '));
+        var l = parseFloat(prompt('Enter the l: '));
+        var d = parseFloat(prompt('Enter the d: '));
+        var r = parseFloat(prompt('Enter the r: '));
+        var s1 = a * l;
+        var s2 = l * d;
+        var s3 = d * r * r;
+        var s4 = Math.PI * r * r;
+        var max = Math.max(s1, s2, s3, s4);
+        if(max == s1){
+            console.log('The largest area is the square: ' + s1);
+        }else if(max == s2){
+            console.log('The largest area is the rectangle: ' + s2);
+        }else if(max == s3){
+            console.log('The largest area is the circle: ' + s3);
+        }else{
+            console.log('The largest area is the circle: ' + s4);
+        }
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+    3.3
+    <script>
+
+
+    </script>
+
+
+  </body>
+
+  <script></script>
+</html>

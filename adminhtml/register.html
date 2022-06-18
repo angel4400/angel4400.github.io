@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>后台注册</title>
+    <style></style>
+    <link rel="stylesheet" href="../css/login.css" />
+  </head>
+<!-- onload="createCode()"显示验证码 -->
+  <body onload="createCode()">
+    <div class="log_on_box">
+      <aside class="log_on_fl fl">
+        <article>
+          <!-- 国徽 -->
+          <!-- <a href=""> <img src="../images/guohui.png" class="log_on_logo" /></a> -->
+          <a href="" target="_blank"
+            ><img src="../images/School_logo.png" class="log_on_logo"
+          /></a>
+          <p>考试云优势</p>
+          <ul>
+            <li>智能易用，让工作更轻松</li>
+            <li>安全稳定，让工作更放心</li>
+            <li>直观报表，让工作更有效</li>
+          </ul>
+          <img src="../images/log_on_bj.svg" alt="" class="log-bg" />
+          <div class="foot-text">
+            <p>
+              © 湖南科技职业学院版权所有<br />
+              <a href="https://www.mps.gov.cn/" target="_blank">
+                <img src="../images/ga_logo.png" />
+                湘公网安备</a
+              >
+            </p>
+            <a href="" target="_blank" class="fgx_a">法律声明</a>
+            <a href="" target="_blank" class="fgx_a">隐私政策</a>
+            <a href="" target="_blank">使用协议</a>
+          </div>
+        </article>
+      </aside>
+      <div class="log_on_fr fl">
+        <div class="top_a">
+          <a href="" target="_blank">首页</a>
+          <span class="fgx_a"></span>
+          <a href="http://www.hnkjzy.edu.cn/" target="_blank">关于</a>
+        </div>
+        <div class="log_on_from">
+          <a href=""> <img src="" class="log_on_logo02" /></a>
+          <div id="divRegisterPanel" class="from_box">
+            <h1>管理员注册</h1>
+            <input id="userName" type="text" placeholder="请输入手机号码" />
+            <p id="divAccountMsg" class="number_error"></p>
+            <!-- <div class="captcha_but">
+              <input
+                id="txtCode"
+                type="text"
+                placeholder="请输入验证码"
+              />
+              <button id="btnGetCode">获取验证码</button>
+            </div> -->
+
+            <p id="divCodeMsg" class="number_error"></p>
+            <input
+              id="userPassword"
+              type="password"
+              placeholder="设置密码，6-20字符，包含大小写字母和数字"
+            />
+            <p id="divPasswordMsg" class="number_error"></p>
+            <input
+              id="txtCompanyName"
+              type="text"
+              placeholder="请输入单位名称（考生请勿注册）"
+            />
+            <div class="wrap">
+              <input type="text" id="text" placeholder="请输入验证码" />
+              <a href="" id="code" onclick="createCode( this )"></a>
+              <input type="button" id="btn" value="验证" onclick="validate()" />
+            </div>
+            <div class="agree-text">
+              <input
+                type="checkbox"
+                id="chkAgree"
+                class="checkbox_input"
+                style="width: 15px; height: 15px"
+              />
+              <label for="chkAgree"
+                >阅读并同意考试<a
+                  class="col-bule"
+                  id="aAgree"
+                  href=""
+                  target="_blank"
+                  >服务协议</a
+                >、<a class="col-bule" id="aPrivacy" href="" target="_blank"
+                  >隐私政策</a
+                ></label
+              >
+            </div>
+            <p id="divAgreeMsg" class="number_error" style="padding-left: 0px">
+              请阅读并同意协议
+            </p>
+            <a id="btnReg" href="javascript:" class="sign_but">注册</a>
+            <div class="have_number">
+              已有账号？<span class="col-bule"
+                ><a href="../adminhtml/login.html" target="_blank"
+                  >立即登录</a
+                ></span
+              >
+            </div>
+          </div>
+          <div id="divSuccessPanel" class="log_end" style="display: none">
+            <img src="../images/success2.gif" />
+            <p>注册成功</p>
+            <a
+              href="../adminhtml/login.html"
+              class="sign_but"
+              style="width: 70%"
+              >去登录</a
+            >
+          </div>
+          <div id="divFailPanel" class="log_end" style="display: none">
+            <img src="../images/fail.png" />
+            <p></p>
+            <a href="/register" class="sign_but" style="width: 70%">重新注册</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../js/register.js"></script>
+</html>
