@@ -179,13 +179,15 @@ document.getElementById("btnReg").onclick = function () {
   } else {
     alert("用户名已经存在，注册失败");
   }
-};
-
-// 将注册时候的学号txtCompanyName存入localStorage
-document.getElementById("btnReg").onclick = function () {
     var txtCompanyName = document.getElementById("txtCompanyName").value;
     localStorage.setItem("txtCompanyName", txtCompanyName);
-    }
+};
+
+// // 将注册时候的学号txtCompanyName存入localStorage
+// document.getElementById("btnReg").onclick = function () {
+//     var txtCompanyName = document.getElementById("txtCompanyName").value;
+//     localStorage.setItem("txtCompanyName", txtCompanyName);
+//     }
 
 
 
