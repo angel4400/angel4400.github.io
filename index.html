@@ -1,80 +1,864 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>父亲节快乐</title>
-</head>
-<style>/* css样式，页面布局*/
-    table{
-        border-collapse: collapse;
-    }
-    #txt{
-        resize: none;
-        width: 600px;
-        height: 40px;
-        font-size: 20px;
-        color:red;
-        background-color: aquamarine;
-        margin: 10px;
-    }
-    a{
-        border: 1px solid;
-        text-decoration: none;
-        font-family: 微软雅黑;
-        font-size: 10px;
-        color: red;
-    }
-    img{
-        height: 540px;
-    }
-    .img_1{
-        text-align: center;
-    }
-    #btn{
-        width: 600px;
-        height: 40px;
-        font-size: 20px;
-        color: red;
-        background-color: aquamarine;
-    }
-</style>
-<body>
-    <div class="img_1">
-        <img src="./images/father.jpeg">
-    </div>
-    <form>
-        <div class="img_1">
-            <input id="txt" type="text"><br/>
-            <input id="btn" type="button" value="搜索">
-        </div>
-    </form>
-    <div class="loading"></div>
-    <audio class="song" controls loop>
-        <source src="../../webcode/lesson05/audio/Audio_video/白袂 - 杨花落尽子规啼 （带戏腔）.mp3">
-        </source>
-</body>
-<script>
-    window.onload=function(){//引用方法，进入页面自动弹出
-        alert("父亲节快乐♪(^∇^*)");
-        var oBtn=document.getElementById("btn");//获取按钮
-        var oTxt=document.getElementById("txt");///获取文本框
-        oTxt.focus();//获得光标焦点
-        oBtn.onclick=function(){//按钮功能
-            if(oTxt.value==""){//文本框为空，提示输入
-                alert("快乐快乐ヾ(❀╹◡╹)ﾉ~");
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="在线考试系统">
+    <title>在线考试系统</title>
+    <!-- 轮播图——插件官网：https://www.swiper.com.cn/ -->
+    <link href="./css/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="./css/swiper.css" />
+    <link href="./css/animate.min.css" rel="stylesheet" type="text/css" />
+    <script src="./js/swiper.js"></script>
+    <!-- Preloader -->
+    <style>
 
+        /* 轮播图！！！ */
+        .box {
+            width: 600px;
+            height: 350px;
+            background-color: pink;
+            margin: 80px 50px ;
+        }
+
+        html,
+        body {
+            position: relative;
+            /* 允许窗口移动 */
+            height: 100%;
+        }
+
+        body {
+            background: rgb(255, 255, 255);
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            /* 设置字体 */
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hxsc{
+            /* 内容居中 */
+            margin: 0 auto;
+            /* 文字居中 */
+            text-align: center;
+        }
+        /* 轮播图主体 */
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 轮播图滑动 */
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* 将文本垂直放在中间
+            游览器兼容和居中
+            */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        /* 分页器 */
+        .swiper-slide img {
+            width: 100%;
+            height: 350px;
+        }
+
+        /* 轮播图小圆点
+        active向活动的链接添加特殊的样式。
+        当点击一个链接时它变成活动链接。
+        */
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* 轮播图活动链接小圆点背景颜色 */
+        .swiper-pagination-bullet-active {
+            background-color: #fff;
+        }
+
+
+        @keyframes hidePreloader {
+            0% {
+                width: 100%;
+                height: 100%;
             }
-           
-            if(oTxt.value=="6月19日");
-            alert("快乐快乐ヾ(❀╹◡╹)ﾉ~");//点击确定，开始播放视频
-            window.open(url="./vedio/father.mp4",target="_blank");
+
+            100% {
+                width: 0;
+                height: 0;
+            }
         }
 
+        body>div.preloader {
+            position: fixed;
+            background: white;
+            width: 100%;
+            height: 100%;
+            z-index: 1071;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-    if(oTxt.value !=""&&oTxt.value !="6月19日"){
-        alert("哈哈");
-    }
-</script>
+
+        body:not(.loaded)>div.preloader {
+            opacity: 1;
+        }
+
+        body:not(.loaded) {
+            overflow: hidden;
+        }
+
+        body.loaded>div.preloader {
+            animation: hidePreloader .5s linear .5s forwards;
+        }
+    </style>
+
+    <style>
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                document.querySelector('body').classList.add('loaded');
+            }, 300);
+        });
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/brand/favicon.png" type="image/png"><!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/libs/@fortawesome/fontawesome-free/css/all.min.css">
+    <!-- Quick CSS -->
+    <link rel="stylesheet" href="assets/css/quick-website.css" id="stylesheet">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">加载...</span>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal-cookies" data-backdrop="false" aria-labelledby="modal-cookies" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-aside left-4 right-4 bottom-4">
+            <div class="modal-content bg-dark-dark">
+                <div class="modal-body">
+                    <!-- Text -->
+                    <p class="text-sm text-white mb-3">
+                        我们使用cookie，以便我们为您工作。通过使用我们的网站，您同意我们使用cookie。
+                    </p>
+                    <!-- Buttons -->
+                    <a href="javascript:" class="btn btn-sm btn-white" target="_blank">了解更多</a>
+                    <button type="button" class="btn btn-sm btn-primary mr-2" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Go Pro -->
+    <!-- <a href="https://webpixels.io/themes/quick-website-ui-kit" class="btn btn-block btn-dark text-truncate rounded-0 py-2 d-none d-lg-block" style="z-index: 1000;" target="_blank">
+        <strong>This is a free demo.</strong> Click here to open the full version →
+    </a> -->
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand" href="index.html">
+                <img alt="Image placeholder" src="assets/img/brand/dark.svg" id="navbar-logo">
+            </a>
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mt-4 mt-lg-0 ml-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="index.html">首页</a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-animate" data-toggle="hover">
+                        <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">页面</a>
+                        <div class="dropdown-menu dropdown-menu-single">
+                            <a href="index.html" class="dropdown-item">主页</a>
+                            <a href="javascript:" class="dropdown-item">公司简介</a>
+                            <a href="javascript:" class="dropdown-item">联系</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="../examinationSystem - 副本/adminhtml/login.html" target="_blank" class="dropdown-item">登录</a>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="javascript:">关于</a>
+                    </li>
+                </ul>
+                <!-- Button -->
+                <a class="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3" target="_blank" href="./adminhtml/register.html">
+                    注册
+                </a>
+                <a class="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3" target="_blank" href="./adminhtml/login.html">
+                    登录
+                </a>
+                <!-- Mobile button -->
+                <div class="d-lg-none text-center">
+                    <a href="javascript:" class="btn btn-block btn-sm btn-warning">看到更多细节</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Main content -->
+    <section class="slice py-7">
+        <div class="container">
+            <div class="row row-grid align-items-center">
+                <div class="col-12 col-md-5 col-lg-6 order-md-2 text-center">
+                    <!-- Image -->
+                    <figure class="w-100">
+
+                        <!-- <img alt="Image placeholder" src="assets/img/svg/illustrations/illustration-3.svg" class="img-fluid mw-md-120"> -->
+                            <!-- 轮播图 -->
+                            <div class="slideshow">
+                                <div class="box">
+                                    <!-- Swiper -->
+                                    <div class="swiper-container one">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <a href="javascript:">
+                                                    <img src="./images/slideshow11.svg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <a href="javascript:">
+                                                    <img src="./images/slideshow22.svg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <a href="javascript:">
+                                                    <img src="./images/slideshow33.svg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <a href="javascript:">
+                                                    <img src="./images/slideshow44.svg" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- 标记页数 -->
+                                        <!-- <div class="swiper-pagination"></div> -->
+                                        <!-- 箭头 -->
+                                        <div class="swiper-button-next"></div>
+                                        <div class="swiper-button-prev"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script src="./js/swiper-bundle.min.js"></script>
+                            <!-- 初始化 Swiper -->
+                            <script>
+                                var swiper = new Swiper('.one', {
+                                    slidesPerView: 1,
+                                    autoplay: {
+                                        delay: 3000,
+                                        stopOnLastSlide: false,
+                                        disableOnInteraction: true,
+                                    },
+                                    spaceBetween: 0,
+                                    loop: true,
+                                    pagination: {
+                                        el: '.swiper-pagination',
+                                        clickable: true,
+                                    },
+                                    navigation: {
+                                        nextEl: '.swiper-button-next',
+                                        prevEl: '.swiper-button-prev',
+                                    },
+                                    keyboard: true,
+                                });
+                                var swiper = new Swiper('.two', {
+                                    slidesPerView: 1,
+                                    autoplay: {
+                                        delay: 5000,
+                                        stopOnLastSlide: false,
+                                        disableOnInteraction: true,
+                                    },
+                                    spaceBetween: 0,
+                                    loop: true,
+                                    pagination: {
+                                        el: '.swiper-pagination',
+                                        clickable: true,
+                                    },
+                                    navigation: {
+                                        nextEl: '.swiper-button-next',
+                                        prevEl: '.swiper-button-prev',
+                                    },
+                                    keyboard: true,
+                                });
+                            </script>
+
+                    </figure>
+                </div>
+                <div class="col-12 col-md-7 col-lg-6 order-md-1 pr-md-5">
+                    <!-- Heading -->
+                    <h1 class="display-4 text-center text-md-left mb-3">
+                        考试云优势
+                        <strong class="text-primary">专业、安全、稳定的在线</strong>
+
+                    </h1>
+                    <!-- Text -->
+                    <p class="lead text-center text-md-left text-muted">
+                        每个人都可以使用的专业在线考试系统，为考试组织者贴心打造
+                    </p>
+
+                    <script>
+                        // strong添加打字机效果
+                    </script>
+
+                    <!-- Buttons -->
+                    <div class="text-center text-md-left mt-5">
+                        <a href="./adminhtml/login.html" class="btn btn-primary btn-icon" target="_blank">
+                            <span class="btn-inner--text">立即注册</span>
+                            <span class="btn-inner--icon"><i data-feather="chevron-right"></i></span>
+                        </a>
+                        <!-- <a href="https://webpixels.io/illustrations" class="btn btn-neutral btn-icon d-none d-lg-inline-block" target="_blank">See Illustrations</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slice slice-lg pt-lg-6 pb-0 pb-lg-6 bg-section-secondary">
+        <div class="container">
+            <!-- Title -->
+            <!-- Section title -->
+            <div class="row mb-5 justify-content-center text-center">
+                <div class="col-lg-6">
+                    <span class="badge badge-soft-success badge-pill badge-lg">
+                        开始
+                    </span>
+                    <h2 class=" mt-4">灵活便捷的考试管理</h2>
+                    <div class="mt-2">
+                        <p class="lead lh-180">特色运营服务，满足更高级别的考试需求
+                        对于考量较大或场次复杂的考试项目，我们有更专业的考试运营团队，为您的考试保驾护航</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card -->
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body pb-5">
+                            <div class="pt-4 pb-5">
+                                <img src="assets/img/svg/illustrations/illustration-5.svg" class="img-fluid img-center" style="height: 150px;" alt="Illustration" />
+                            </div>
+                            <h5 class="h4 lh-130 mb-3">功能齐全好用高性价比</h5>
+                            <p class="text-muted mb-0">在线考试系统满足考试考核、练习测评、模拟考试、笔试招聘、问卷调查等多种业务场景</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body pb-5">
+                            <div class="pt-4 pb-5">
+                                <img src="assets/img/svg/illustrations/illustration-6.svg" class="img-fluid img-center" style="height: 150px;" alt="Illustration" />
+                            </div>
+                            <h5 class="h4 lh-130 mb-3">完善的服务支持体系</h5>
+                            <p class="text-muted mb-0">在线考试系统满足考试保存题目、显示总成绩、单选答题、后台题库管理功能等超多功能</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body pb-5">
+                            <div class="pt-4 pb-5">
+                                <img src="assets/img/svg/illustrations/illustration-7.svg" class="img-fluid img-center" style="height: 150px;" alt="Illustration" />
+                            </div>
+                            <h5 class="h4 lh-130 mb-3">多重安全策略保护数据</h5>
+                            <p class="text-muted mb-0">多重方式保证数据不丢失，高可用故障转移，异地容灾备份，99.99%可用性保证、加密保护，安全</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slice slice-lg">
+
+        <div class="container">
+
+            <div class="py-6">
+                <div class="row row-grid justify-content-between align-items-center">
+                    <div class="col-lg-5 order-lg-2">
+                        <h4 class="h3">多场景多类型考试应用</h4>
+                        <p class="lead my-4">
+                            候选人等候时面试可手机扫码参加笔试，系统实时生成结果，一个简单的考核就可让面试官提前了解候选人的能力情况。
+                        </p>
+                        <ul class="list-unstyled mb-0">
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <div class="icon icon-shape bg-primary text-white icon-sm rounded-circle mr-3">
+                                            <i class="fas fa-file-invoice"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="h6 mb-0">免费注册</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <div class="icon icon-shape bg-primary text-white icon-sm rounded-circle mr-3">
+                                            <i class="fas fa-store-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="h6 mb-0">支持定制</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="card mb-0 mr-lg-5">
+                            <div class="card-body p-2">
+                                <img alt="Image placeholder" src="./images/kys (2).png" class="img-fluid shadow rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="py-6">
+                <div class="row row-grid justify-content-between align-items-center">
+                    <div class="col-lg-5">
+                        <h5 class="h3">大规模校园招聘</h5>
+                        <p class="lead my-4">
+                            招聘会上公布考试地址，考生现场完成考试，现场出分，主办方可快速筛选合格考生参加面试，大大缩短招聘周期和成本。
+                        </p>
+                        <ul class="list-unstyled mb-0">
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <div class="icon icon-shape bg-primary text-white icon-sm rounded-circle mr-3">
+                                            <i class="fas fa-file-invoice"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="h6 mb-0">高效</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <div class="icon icon-shape bg-primary text-white icon-sm rounded-circle mr-3">
+                                            <i class="fas fa-store-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="h6 mb-0">安全</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <div class="icon icon-shape bg-primary text-white icon-sm rounded-circle mr-3">
+                                            <i class="fas fa-store-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="h6 mb-0">稳定</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card mb-0 ml-lg-5">
+                            <div class="card-body p-2">
+                                <img alt="Image placeholder" src="./images/kys (3).png" class="img-fluid shadow rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="py-6">
+                <div class="row row-grid justify-content-between align-items-center">
+                    <div class="col-lg-5 order-lg-2">
+                        <h4 class="h3">员工晋升考核</h4>
+                        <p class="lead my-4">
+                        员工专业技能是否达标，员工素质测评，安排一场考试即可对员工是否晋升进行有理的判断。
+                        </p>
+                        <ul class="list-unstyled mb-0">
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <div class="icon icon-shape bg-primary text-white icon-sm rounded-circle mr-3">
+                                            <i class="fas fa-file-invoice"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="h6 mb-0">免费体验</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <div class="icon icon-shape bg-primary text-white icon-sm rounded-circle mr-3">
+                                            <i class="fas fa-store-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="h6 mb-0">支持定制</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="card mb-0 mr-lg-5">
+                            <div class="card-body p-2">
+                                <img alt="Image placeholder" src="./images/kys (4).png" class="img-fluid shadow rounded">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="py-6">
+                <div class="row row-grid justify-content-between align-items-center">
+                    <div class="col-lg-5">
+                        <h5 class="h3">培训认证考核</h5>
+                        <p class="lead my-4">
+                            培训机构结业认证考核，行业从业资格认证，能力认证考核等，我们提供从考生付费报名到参加考试的全流程功能。
+                        </p>
+                        <ul class="list-unstyled mb-0">
+
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <div class="icon icon-shape bg-primary text-white icon-sm rounded-circle mr-3">
+                                            <i class="fas fa-file-invoice"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="h6 mb-0">高效</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <div class="icon icon-shape bg-primary text-white icon-sm rounded-circle mr-3">
+                                            <i class="fas fa-store-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="h6 mb-0">安全</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="py-2">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <div class="icon icon-shape bg-primary text-white icon-sm rounded-circle mr-3">
+                                            <i class="fas fa-store-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="h6 mb-0">稳定</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card mb-0 ml-lg-5">
+                            <div class="card-body p-2">
+                                <img alt="Image placeholder" src="./images/kys (5).png" class="img-fluid shadow rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="slice slice-lg bg-section-dark pt-5 pt-lg-8">
+        <!-- SVG separator -->
+        <div class="shape-container shape-line shape-position-top shape-orientation-inverse">
+            <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100;" xml:space="preserve" class="">
+                <polygon points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+        <!-- Container -->
+        <div class="container position-relative zindex-100">
+            <div class="col">
+                <div class="row justify-content-center">
+                    <div class="col-md-10 text-center">
+                        <div class="mt-4 mb-6">
+                            <h2 class="h1 text-white">
+                                智能免费在线考试系统云平台
+                            </h2>
+                            <h4 class="text-white mt-3">开始你自己的体验</h4>
+                            <!-- Play button -->
+                            <a href="javascript:" class="btn btn-primary btn-icon mt-4">了解更多</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slice pt-0">
+        <div class="container position-relative zindex-100">
+            <div class="row">
+                <div class="col-xl-4 col-sm-6 mt-n7">
+                    <div class="card">
+                        <div class="d-flex p-5">
+                            <div>
+                                <span class="badge badge-warning badge-pill">New</span>
+                            </div>
+                            <div class="pl-4">
+                                <h5 class="lh-130">学生、员工考试</h5>
+                                <p class="text-muted mb-0">
+                                    用户登录、注册功能、添加自定义功能、支持定制系统
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-6 mt-sm-n7">
+                    <div class="card">
+                        <div class="d-flex p-5">
+                            <div>
+                                <span class="badge badge-success badge-pill">Tips</span>
+                            </div>
+                            <div class="pl-4">
+                                <h5 class="lh-130">练习与电子作业</h5>
+                                <p class="text-muted mb-0">
+                                    优化页面、保存题目、显示总成绩、单选答题等功能实现
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-12 col-sm-6 mt-xl-n7">
+                    <div class="card">
+                        <div class="d-flex p-5">
+                            <div>
+                                <span class="badge badge-danger badge-pill">Update</span>
+                            </div>
+                            <div class="pl-3">
+                                <h5 class="lh-130">题库建设</h5>
+                                <p class="text-muted mb-0">
+                                    保存已答题目、显示分数、增加题目等功能实现
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-sm-6">
+                    <div class="card">
+                        <div class="d-flex p-5">
+                            <div>
+                                <span class="badge badge-warning badge-pill">New</span>
+                            </div>
+                            <div class="pl-4">
+                                <h5 class="lh-130">报考与考生管理</h5>
+                                <p class="text-muted mb-0">
+                                    后台题库管理功能、显示对、错题数量，显示等级、支持定制系统
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-6">
+                    <div class="card">
+                        <div class="d-flex p-5">
+                            <div>
+                                <span class="badge badge-success badge-pill">Tips</span>
+                            </div>
+                            <div class="pl-4">
+                                <h5 class="lh-130">社招、校招与笔试</h5>
+                                <p class="text-muted mb-0">
+                                优化题库功能、随机选择10个题目、倒计时、定时交卷等
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-12 col-sm-6">
+                    <div class="card">
+                        <div class="d-flex p-5">
+                            <div>
+                                <span class="badge badge-danger badge-pill">Update</span>
+                            </div>
+                            <div class="pl-3">
+                                <h5 class="lh-130">严肃性考试</h5>
+                                <p class="text-muted mb-0">
+                                增加多种题型、后台显示已参考成绩、优化页面、功能设计说明书
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+     <h1 class="hxsc">合作伙伴</h1>
+    <div class="swiper">
+        <ul class="pic">
+            <li class="now"><a href="javascript:"><img src="./images/txs (2).png" alt="" /></a></li>
+            <li class="next"><a href="javascript:"><img src="./images/txs (3).png" alt="" /></a></li>
+            <li><a href="javascript:"><img src="./images/txs (4).png" alt="" /></a></li>
+            <li><a href="javascript:"><img src="./images/txs (5).png" alt="" /></a></li>
+            <li><a href="javascript:"><img src="./images/txs (6).png" alt="" /></a></li>
+        </ul>
+        <ol class="cricle"></ol>
+        <div class="btns">
+            <a href="javascript:;" class="leftbtn" style="float: left; margin-left: 6px;"></a>
+            <a href="javascript:;" class="rightbtn" style="float: right; margin-right: 6px;"></a>
+        </div>
+        <div class="leftBox"></div>
+        <div class="rightBox"></div>
+    </div>
+
+    <footer class="position-relative" id="footer-main">
+        <div class="footer pt-lg-7 footer-dark bg-dark">
+            <!-- SVG shape -->
+            <div class="shape-container shape-line shape-position-top shape-orientation-inverse">
+                <svg width="2560px" height="100px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" viewBox="0 0 2560 100" style="enable-background:new 0 0 2560 100;" xml:space="preserve" class=" fill-section-secondary">
+                    <polygon points="2560 0 2560 100 0 100"></polygon>
+                </svg>
+            </div>
+            <!-- Footer -->
+            <div class="container pt-4">
+                <div class="row">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <!-- Theme's logo -->
+                        <a href="index.html">
+                            <img alt="Image placeholder" src="assets/img/brand/light.svg" id="footer-logo">
+                        </a>
+                        <!-- Webpixels' mission -->
+                        <p class="mt-4 text-sm opacity-8 pr-lg-4">我们试图为您带来最好的开发体验，专注于解决在线考试难题，打造安全稳定易用的在线考试系统。</p>
+                        <!-- Social -->
+                        <ul class="nav mt-4">
+                            <li class="nav-item">
+                                <a class="nav-link pl-0" href="javascript:">
+                                    <i class="fas fa-heart fa-2x"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:">
+                                    <i class="fas fa-heart fa-2x"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:">
+                                    <i class="fas fa-heart fa-2x"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:">
+                                    <i class="fas fa-heart fa-2x"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0">
+                        <h6 class="heading mb-3">关于</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="javascript:">关于我们</a></li>
+                            <li><a href="javascript:">联系我们</a></li>
+                            <li><a href="javascript:">隐私政策</a></li>
+                            <li><a href="javascript:">法律声明</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0">
+                        <h6 class="heading mb-3">帮助</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="javascript:">快速入门</a></li>
+                            <li><a href="javascript:">视频教程</a></li>
+                            <li><a href="javascript:">快速创建考试</a></li>
+                            <li><a href="javascript:">如何创建练习</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0">
+                        <h6 class="heading mb-3">友情链接</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="http://www.hnedu.cn/" target="_blank">湖南教育网</a></li>
+                            <li><a href="http://jyt.hunan.gov.cn/" target="_blank">湖南省教育厅</a></li>
+                            <li><a href="http://www.hunan.gov.cn/" target="_blank">湖南省人民政府</a></li>
+                            <li><a href="http://www.moe.gov.cn/" target="_blank">中华人民共和国教育部</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <hr class="divider divider-fade divider-dark my-4">
+                <div class="row align-items-center justify-content-md-between pb-4">
+                    <div class="col-md-6">
+                        <div class="copyright text-sm font-weight-bold text-center text-md-left">
+                            &copy; 2022 <a href="javascript:" class="font-weight-bold">镜</a>. 保留所有权利
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="nav justify-content-center justify-content-md-end mt-3 mt-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:">
+                                    条件
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:">
+                                    隐私
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:">
+                                    Cookies
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
 </html>
