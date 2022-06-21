@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>添加题目</title>
+    <!-- <link href="../css/initPro.css" rel="stylesheet" type="text/css" /> -->
+    <link href="../css/animate.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        .my-element {
+  display: inline-block;
+  margin: 0 0.5rem;
+
+  animation: bounce; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s; /* don't forget to set a duration! */
+}
+
+/* This only changes this particular animation duration */
+.animate__animated.animate__bounce {
+  --animate-duration: 2s;
+}
+
+/* This changes all the animations globally */
+:root {
+  --animate-duration: 800ms;
+  --animate-delay: 0.9s;
+}
+
+/* All delay classes will take 2x longer to start */
+:root {
+  --animate-delay: 2s;
+}
+
+/* All delay classes will take half the time to start */
+:root {
+  --animate-delay: 0.5s;
+}
+    </style>
+  </head>
+  <body>
+    <p class="animate__animated animate__flash">123</p>
+
+
+    <h1 class="animate__animated animate__bounce">An animated element</h1>
+
+    <div class="animate__animated animate__bounce animate__delay-2s">Example</div>
+  </body>
+  <!-- <script src="../js/initPro.js"></script> -->
+  <script>
+
+  </script>
+</html>

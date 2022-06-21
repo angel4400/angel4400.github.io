@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>添加题目</title>
+  <!-- <link rel="stylesheet" href="../css/user.css"> -->
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none; /* 去除链接下划线 */
+  color:#721c24;
+}
+h1 {
+  text-align: center;
+  color:#333;
+  margin: 20px 0;
+}
+table {
+  margin:0 auto;
+  border-collapse: collapse; /* 删除单元格之间的间距 */
+  color:#ffffff;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  padding: 10px;
+  background: #4caf50;
+
+  font-size: 20px;
+  font-weight: 400;
+}
+
+td,th {
+  border:1px solid #4caf50;
+}
+td {
+  padding:10px;
+  color:#666;
+  text-align: center;
+  font-size: 16px;
+}
+tbody tr {
+  background: #fff;
+}
+tbody tr:hover {
+  background: #e1ecf8;
+}
+.info {
+  width: 900px;
+  margin: 50px auto;
+  text-align: center;
+}
+.info  input {
+  width: 150px;
+  height: 25px;
+  outline: none;
+  border-radius: 5px;
+  border:1px solid #b8daff;
+  padding-left: 5px;
+}
+.info button {
+  width: 60px;
+  height: 25px;
+  background-color: #004085;
+    outline: none;  /* 去除轮廓 */
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.info .age {
+  width: 50px;
+}
+
+th,
+td {
+    padding: 15px;
+}
+
+/* 鼠标悬停效果 */
+td:hover {
+    background-color: #f1f1f1;
+}
+/* 表格内容居中 */
+.center {
+    text-align: center;
+}
+
+td{
+    /* 表格内容居中· */
+    text-align: center;
+    /* 表格内容居中· */
+    vertical-align: middle;
+}
+
+  </style>
+</head>
+
+<body>
+<div class="info">
+
+    题目<input type="text" class="title" />
+    A：<input type="text" class="a" />
+    B：<input type="text" class="b" />
+    C：<input type="text" class="c" />
+    D：<input type="text" class="d" />
+
+    答案:
+    <select name="answer" id="" class="answer">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+    </select>
+
+    分数:
+    <input type="text" class="score" />
+
+    <button class="add">录入</button>
+
+    
+</div>
+
+  <h1>导入题目</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>题目</th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <!-- <th>就业城市</th> -->
+        <th>答案</th>
+        <th>分数</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <script>
+
+    // 读取本地存储的数据  封装为函数
+    // 需求①：读取本地存储数据（封装函数）
+    //   如果本地存储有数据，则返回 JSON.parse() 之后的对象
+    //   如果本地存储没有数据，则默认写入三条数据，注意存储的利用JSON.stringify() 存 储JSON 格式的数据
+    function getLocalData() {
+      let data = localStorage.getItem('problemDB')
+
+      if (data) {
+        //   如果本地存储有数据，则返回 JSON.parse() 之后的对象
+        return JSON.parse(data)  //   {xxxxx}
+
+      }
+    //   else {
+    //     // 如果本地存储没有数据，则默认写入三条数据，注意存储的利用JSON.stringify() 存 储JSON 格式的数据
+
+    //     let arr = [
+
+    //       { stuId: 1, title: '列', a: 19, b: 11, c: 1, d: 1, answer: 52, score: 20 },
+    //     ]
+    //     // 写入到本地存储里面
+    //     localStorage.setItem('problemDB', JSON.stringify(arr))
+    //   }
+    }
+    console.log(getLocalData());
+
+    // 先调用一次
+    getLocalData()
+
+    // 获取父元素 tbody
+        let tbody = document.querySelector("tbody");
+        // 添加数据按钮
+        // 获取录入按钮
+        let add = document.querySelector('.add')
+        // 获取各个表单的元素
+        let title = document.querySelector('.title')
+        let a = document.querySelector('.a')
+        let b = document.querySelector('.b')
+
+        let c = document.querySelector('.c')
+        let d = document.querySelector('.d')
+
+        let answer = document.querySelector('.answer')
+        let score = document.querySelector('.score')
+
+    // 渲染函数  把数组里面的数据渲染到页面中
+    function render() {
+      // 需求②：渲染模块
+      // 先读取本地存储数据，然后渲染
+      let arr = getLocalData()
+
+      // 先干掉以前的数据  让tbody 里面原来的tr 都没有
+      tbody.innerHTML = ''
+      // 在渲染新的数据
+      // 根据数据的条数来渲染增加 tr
+      for (let i = 0; i < arr.length; i++) {
+        // 1.创建tr
+        let tr = document.createElement('tr')
+        // 2.tr 里面放内容
+        tr.innerHTML = `
+        <td>${arr[i].stuId}</td>
+        <td>${arr[i].title}</td>
+        <td>${arr[i].a}</td>
+        <td>${arr[i].b}</td>
+        <td>${arr[i].c}</td>
+        <td>${arr[i].d}</td>
+        <td>${arr[i].answer}</td>
+        <td>${arr[i].score}</td>
+        <td>
+          <a href="javascript:"  data-id="${i}">删除</a>
+        </td>
+        `
+        // 3.把tr追加给 tobdy  父元素.appendChild(子元素)
+        tbody.appendChild(tr)
+
+      }
+    }
+
+    // 页面加载就调用函数
+    render()
+
+    add.addEventListener('click', function () {
+      // 需求③：添加模块
+      // 注意，先取的最新的本地存储数据，然后追加
+      let arr = getLocalData()
+      // 新增了数据，要把新数据存储到本地存储别，忘记转换
+
+      // alert(11)
+      // 获得表单里面的值   之后追加给 数组 arr  用 push方法
+      arr.push({
+            // 自动生成id
+            stuId: arr.length + 1,
+            // stuId: 1,
+            title: title.value,
+            a: a.value,
+            b: b.value,
+            c: c.value,
+            d: d.value,
+            answer: answer.value,
+            score: score.value,
+
+        })
+      // console.log(arr)
+
+      // 存储到仓库里面
+      localStorage.setItem('problemDB', JSON.stringify(arr))
+
+      // 重新渲染我们的函数
+      render()
+      // 复原所有的表单数据
+      // 复原所有的表单数据
+        title.value = ''
+        a.value = ''
+        b.value = ''
+        c.value = ''
+        d.value = ''
+        answer.value = 'A'
+        score.value = ''
+    //   city.value = '北京'
+
+    })
+
+    // 删除操作， 删除的也是数组里面的数据 ， 用事件委托
+    tbody.addEventListener('click', function (e) {
+      // 读取本地存储里面的数据
+      let arr = getLocalData()
+      // alert(11)
+      // 只能点击了链接 a ，才会执行删除操作
+      // 怎么知道点击了a呢？
+      // 点击了链接才能做删除操作
+      // console.dir(e.target.tagName)
+      if (e.target.tagName === 'A') {
+        // alert('你点击了链接')
+        // 删除操作  删除 数组里面的数据  arr.splice(从哪里开始删，1)
+        // 我要得到a的id 需要
+        // console.log(e.target.id)
+        // console.log(e.target.dataset.id)
+        arr.splice(e.target.dataset.id, 1)
+
+        // 改变ID的值
+        for (let i = 0; i < arr.length; i++) {
+          arr[i].stuId = i + 1
+        }
+
+        // 存到本地里面
+        localStorage.setItem('problemDB', JSON.stringify(arr))
+
+        // 重新渲染我们的函数
+        render()
+      }
+    })
+
+    // 数组转为对象 存到本地存储里面
+    // function getLocalData1() {
+    //   // 读取本地存储里面的数据
+    //   let arr1 = JSON.parse(localStorage.getItem('problemDB'))
+    //   // 如果没有数据
+    //   if (!arr1) {
+    //     let arr1 = [
+    //           { stuId: 1, title: '列', a: 19, b: 11, c: 1, d: 1, answer: 52, score: 20 },
+    //       ]
+    //   }
+    //   return arr1
+    // }
+    // console.log(arr1);
+  </script>
+</body>
+
+</html>
