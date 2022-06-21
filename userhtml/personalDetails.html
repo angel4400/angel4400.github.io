@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人信息</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Create three equal columns that floats next to each other */
+        /*  HTML+css实现div盒子根据内容自动增大
+        1.先把需要根据内容增大的盒子加上：
+        height：auto；
+        2.如果需要设置最小高度，则加上：
+        min-height:500px；（自己需要的盒子高度）
+        3.如果子盒子有浮动属性则加上一个盒子去除浮动：
+        4.如果以上步骤还是不行，一定一定要检查大盒子里的盒子是不是给了固定的高度！
+      */
+        /* 设置左边的盒子 */
+        .column {
+            float: left;
+            width: 30%;
+            padding: 10px;
+            min-height: 500px;
+            height: auto;
+            margin: 10px;
+
+            border-radius: 0px;
+            background: #ffffff;
+            box-shadow: 5px 5px 12px #8c8c8c, -5px -5px 12px #ffffff;
+        }
+
+        /* 设置右边的盒子 */
+        .column_left {
+            float: left;
+            width: 60%;
+            padding: 20px;
+            min-height: 500px;
+            height: auto;
+            margin: 10px;
+
+            border-radius: 0px;
+            background: #ffffff;
+            box-shadow: 5px 5px 12px #8c8c8c, -5px -5px 12px #ffffff;
+        }
+        .column_1{
+            float: left;
+            width: 10%;
+            padding: 20px;
+            min-height: 500px;
+            height: auto;
+            margin: 10px;
+
+            border-radius: 0px;
+            background: #ffffff;
+            box-shadow: 5px 5px 12px #8c8c8c, -5px -5px 12px #ffffff;
+        }
+
+        /* 对齐方式 */
+        /*
+        justify-content: center;  居中排列
+        justify-content: start; 从行首开始排列
+        justify-content: end; 从行尾开始排列
+        justify-content: flex-start; 从行首起始位置开始排列
+        justify-content:flex-end; 从行尾位置开始排列
+        justify-content:left; 一个挨一个在对齐容器得左边缘
+        justify-content:right; 元素以容器右边缘为基准，一个挨着一个对齐，
+         */
+        /* 基线对齐 */
+        /*
+        justify-content： 基线;
+        对齐内容：第一个基线;
+        对齐内容：最后一个基线;
+        */
+        /* 分配弹性元素方式 */
+        /*
+        justify-content： space-between;  均匀排列每个元素首个元素放置于起点，末尾元素放置于终点
+        justify-content： space-around;  均匀排列每个元素 每个元素周围分配相同的空间
+        justify-content： space-evenly; 均匀排列每个元素每个元素之间的间隔相等
+        justify-content： stretch;  均匀排列每个元素
+        'auto'-size 的元素会被拉伸以适应容器的大小
+        */
+        /* 溢出对齐方式 */
+        /*
+        justify-content： safe center;合理性内容：不安全的中心;
+        */
+
+        /* 全局值 */
+        /*
+        justify-content： inherit;
+        对齐内容：初始;
+        对齐内容：未设置;
+        */
+        .row {
+            /* 设置盒子居中 */
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 清除浮动后的列 */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* 响应式布局——使三列堆叠在一起，而不是彼此相邻 */
+        @media (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+
+            .column_left {
+                width: 100%;
+            }
+
+            .column_top {
+                width: 100%;
+            }
+        }
+
+        /* 设置单选框样式 */
+        /* 自定义标签（容器） */
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* 隐藏浏览器的默认单选按钮 */
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        /* 创建一个自定义单选按钮 */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+            border-radius: 50%;
+        }
+
+        /* 鼠标悬停时，添加灰色背景颜色 */
+        .container:hover input~.checkmark {
+            background-color: #ccc;
+        }
+
+        /* 选中单选按钮时，添加蓝色背景 */
+        .container input:checked~.checkmark {
+            background-color: #2196f3;
+        }
+
+        /* 创建指标（点/圆 - 未选中时隐藏）*/
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* 选中时显示指示器（点/圆圈）*/
+        .container input:checked~.checkmark:after {
+            display: block;
+        }
+
+        /* 设置指示器样式（点/圆）*/
+        .container .checkmark:after {
+            top: 9px;
+            left: 9px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        /* 设置按钮样式 */
+        .btn {
+            border: 2px solid black;
+            background-color: white;
+            color: black;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Blue按钮 */
+        .info {
+            border-color: #2196f3;
+            color: dodgerblue;
+        }
+
+        .info:hover {
+            background: #2196f3;
+            color: white;
+        }
+
+        /* 定义粗体字符 */
+        #title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2196f3;
+        }
+
+        /* 考试倒计时 */
+        #timer {
+            font-size: 30px;
+            font-weight: bold;
+            color: #000000;
+            margin: 0 auto;
+        }
+
+        /* 考试助手 */
+        .Examination_assistant {
+            font-weight: bold;
+            /* 边框 */
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            /*设置line-height与父级元素的height相等*/
+            /* text-align: center; 设置文本水平居中 */
+            overflow: hidden;
+            /*防止内容超出容器或者产生自动换行*/
+            /* 设置下边框 */
+            border-bottom: 1px solid #ccc;
+            font-size: 30px;
+        }
+
+        .times {
+            text-align: center;
+            /* 设置文本水平居中 */
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="column_left">
+
+        </div>
+
+        <!-- 考试助手 -->
+        <div class="column">
+
+        </div>
+
+        <div class="column_1">
+
+        </div>
+
+    </div>
+</body>
+<script>
+    let i = 1
+    console.log(i++ + ++i +i)
+    console.log(i++);
+    console.log(++i);
+
+</script>
+
+</html>

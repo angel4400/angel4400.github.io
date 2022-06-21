@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>主页</title>
+    <style>
+      /* 将正文和文档的高度设置为 100% 以启用"整页选项卡" */
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial;
+      }
+
+      /* 选项卡链接样式 */
+      .tablink {
+        /* background-color: rgb(181, 181, 181); */
+        color: rgb(0, 0, 0);
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        font-size: 17px;
+        /* width: 25%; */
+        width: 100px;
+        background-color: #ffffff;
+        top: 0px;
+      }
+
+      .tablink:hover {
+        background-color: #777;
+      }
+
+      /* 设置标签内容的样式（并为整页内容添加 height:100% ） */
+      .tabcontent {
+        color: rgb(255, 255, 255);
+        display: none;
+        height: 100%;
+      }
+
+      /* 新选择器原生移除滚动条: */
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* 箭头 */
+      /* .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        } */
+
+      /* 为下拉按钮设置样式 */
+      .dropbtn {
+        background-color: #ffffff;
+        color: rgb(0, 0, 0);
+        padding: 14.6px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* 容器 <div> - 需要定位下拉内容 */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* 下拉内容（默认隐藏）*/
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #ffffff;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      /* 下拉列表中的链接 */
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      /* 更改悬停时下拉链接的颜色 */
+      .dropdown-content a:hover {
+        background-color: #f1f1f1;
+      }
+
+      /* 悬停时显示下拉菜单 */
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      /* 显示下拉内容时更改下拉按钮的背景颜色 */
+      .dropdown:hover .dropbtn {
+        background-color: #777;
+      }
+
+      .head {
+        border-radius: 0px;
+        background: #ffffff;
+        box-shadow: 5px 5px 33px #c2c2c2, -5px -5px 33px #ffffff;
+      }
+
+      .img {
+        width: 500px;
+        height: 90px;
+      }
+      img {
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .main{
+            /* 内容居中 */
+            text-align: center;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="head">
+      <div><img src="../images/crest_blue.jpg" class="img-responsive"/>
+        <br /></div>
+      <button
+        class="tablink"
+        onclick="openPage('Home', this, 'red')"
+        id="defaultOpen"
+      >
+        <!-- <i class="arrow right"></i> -->
+        主页
+      </button>
+
+      <button
+        class="tablink"
+        onclick="openPage('Exam_management', this, 'green')"
+      >
+        考试管理
+      </button>
+
+      <div class="dropdown">
+        <button class="dropbtn">下拉列表</button>
+        <div class="dropdown-content">
+          <a href="#">链接1</a>
+          <a href="#">链接2</a>
+          <a href="#">链接3</a>
+        </div>
+      </div>
+
+      <button
+        class="tablink"
+        onclick="openPage('Personal_information', this, 'blue')"
+      >
+        个人信息
+      </button>
+      <button class="tablink" onclick="openPage('other', this, 'orange')">
+        其他
+      </button>
+    </div>
+
+    <div id="Home" class="tabcontent">
+      <iframe
+        src=""
+        id="mainframe_3"
+        onload="changeFrameHeight() "
+        frameborder="0"
+        width="100%"
+        allowTransparency="true"
+      ></iframe>
+    </div>
+
+    <div id="Exam_management" class="tabcontent" >
+      <iframe
+        src="../userhtml/onlineExam.html"
+        id="mainframe"
+        onload="changeFrameHeight() "
+        frameborder="0"
+        width="100%"
+        allowTransparency="true"
+      ></iframe>
+    </div>
+
+    <div id="Personal_information" class="tabcontent">
+      <iframe
+        src=""
+        id="mainframe_1"
+        onload="changeFrameHeight() "
+        frameborder="0"
+        width="100%"
+        allowTransparency="true"
+      ></iframe>
+    </div>
+
+    <div id="other" class="tabcontent">
+      <iframe
+        src=""
+        id="mainframe_2"
+        onload="changeFrameHeight() "
+        frameborder="0"
+        width="100%"
+        allowTransparency="true"
+      ></iframe>
+    </div>
+
+  </body>
+  <script>
+    function openPage(pageName, elmnt, color) {
+      // 默认隐藏所有带有 class="tabcontent" 的元素 */
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // 删除所有标签链接/按钮的背景颜色
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+
+      // 显示具体的标签内容
+      document.getElementById(pageName).style.display = "block";
+
+      // 为用于打开选项卡内容的按钮添加特定颜色
+      // elmnt.style.backgroundColor = color;
+    }
+
+    // 用 id="defaultOpen" 获取元素并点击它
+    document.getElementById("defaultOpen").click();
+
+    // iframe高度自适应
+    // var ifm = document.getElementById("mainframe_1");
+    // ifm.height = document.documentElement.clientHeight;
+    function changeFrameHeight() {
+      var ifm = document.getElementById("mainframe");
+      ifm.height = document.documentElement.clientHeight;
+      var ifm = document.getElementById("mainframe_1");
+      ifm.height = document.documentElement.clientHeight;
+      var ifm = document.getElementById("mainframe_2");
+      ifm.height = document.documentElement.clientHeight;
+      var ifm = document.getElementById("mainframe_3");
+      ifm.height = document.documentElement.clientHeight;
+    }
+    window.onresize = function () {
+      changeFrameHeight();
+    };
+  </script>
+</html>
