@@ -1,0 +1,37 @@
+table,
+td,
+th {
+    border: 1px solid #ddd;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 15px;
+}
+
+/* 表头 */
+th {
+    background-color: #4caf50;
+    color: rgb(255, 255, 255);
+}
+
+/* 鼠标悬停效果 */
+td:hover {
+    background-color: #f1f1f1;
+}
+/* 表格内容居中 */
+.center {
+    text-align: center;
+}
+
+td{
+    /* 表格内容居中· */
+    text-align: center;
+    /* 表格内容居中· */
+    vertical-align: middle;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <style>
+        * {box-sizing: border-box}
+
+/* 为容器添加填充 */
+.container {
+  padding: 16px;
+}
+
+/* 全宽输入字段 */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* 覆盖 hr 的默认样式 */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* 设置提交/注册按钮的样式 */
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+}
+
+/* 为链接添加蓝色文本颜色 */
+a {
+  color: dodgerblue;
+}
+
+/* 设置一个灰色的背景颜色和居中的 "sign in （登录）" 部分的文本 */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+    </style>
+</head>
+<body>
+
+<form>
+    <div class="container">
+        <h1>注册</h1>
+        <hr>
+
+        <label for="userName"><b>用户名</b></label>
+        <input type="text" placeholder="" name="userName" id="userName" required>
+
+        <label for="userPassword"><b>密码</b></label>
+        <input type="password" name="userPassword" id="userPassword" required>
+
+        <label for="userPassword-repeat"><b>重复密码</b></label>
+        <input type="password" name="userPassword-repeat" id="userPassword-repeat" required>
+        <hr>
+
+        <p>通过创建账户您同意我们的 <a href="#">条款和隐私</a>.</p>
+        <button type="submit" class="registerbtn" id="btnReg">注册</button>
+    </div>
+
+    <div class="container signin">
+        <p>已有账号?<a href="../userhtml/login.html">登录</a>.</p>
+    </div>
+</form>
+
+</body>
+<script src="../js/loginRegistration.js"></script>
+<script>
+    /**
+     * 1.注册按钮绑定onclick事件
+     * 2.获取页面的用户名和密码
+     * 3.调用reg方法实现注册
+     * 4.判断方法的返回值，1：注册成功，转到登录页面
+     *    else 注册失败
+     */
+    document.getElementById('btnReg').onclick = function(){
+        window.event.returnValue = false
+        // 这个属性放到提交表单中的onclick事件中在这次点击事件不会提交表单，如果放到超链接中则在这次点击事件不执行超链接href属性。改成如下代码后window.location.href成功跳转。
+        var userName = document.getElementById('userName').value;
+        var password = document.getElementById('userPassword').value;
+        var result = reg(userName,password);
+        if(result==1){
+            alert('注册成功');
+            window.location.href ='./login.html';
+        }else{
+            alert('用户名已经存在，注册失败');
+        }
+    }
+
+    //验证重复密码
+    document.getElementById('userPassword-repeat').onblur = function(){
+        var password = document.getElementById('userPassword').value;
+        var passwordRepeat = document.getElementById('userPassword-repeat').value;
+        if(password!=passwordRepeat){
+            alert('两次密码不一致，请输入相同的密码');
+        }
+    }
+</script>
+</html>
